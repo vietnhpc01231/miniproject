@@ -1,0 +1,344 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <app-header></app-header>
+  <div class="page-wrapper">
+    <div class="page-content">
+      <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Forms</div>
+        <div class="ps-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+              <li class="breadcrumb-item">
+                <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Danh mục</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="ms-auto">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary">Settings</button>
+            <button type="button" class="
+                    btn btn-primary
+                    split-bg-primary
+                    dropdown-toggle dropdown-toggle-split
+                  " data-bs-toggle="dropdown">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+              <a class="dropdown-item" href="javascript:;">Action</a>
+              <a class="dropdown-item" href="javascript:;">Another action</a>
+              <a class="dropdown-item" href="javascript:;">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="javascript:;">Separated link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-cols-2">
+        <div class="col-md-12">
+          <h6 class="mb-0 text-uppercase">Form with icons</h6>
+          <hr />
+          <div class="card border-top border-0 border-4 border-danger">
+            <div class="card-body p-5">
+              <div class="card-title d-flex align-items-center">
+                <div><i class="bx bxs-user me-1 font-22 text-danger"></i></div>
+                <h5 class="mb-0 text-danger">Quản lý danh mục</h5>
+              </div>
+              <hr />
+
+              <br><br><br>
+
+              <div class="card-body">
+                <ul class="nav nav-tabs nav-primary mb-0" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#primaryhome" role="tab" aria-selected="true">
+                      <div class="d-flex align-items-center">
+                        <div class="tab-icon"><i class='bx bx-comment-detail font-18 me-1'></i>
+                        </div>
+                        <div class="tab-title">Danh mục cha</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li  (click)="LoadParentCategoryEnableTrue();loadCategory()" class="nav-item" role="presentation">
+                    <a class="nav-link" data-bs-toggle="tab" href="#primaryprofile" role="tab" aria-selected="false">
+                      <div class="d-flex align-items-center">
+                        <div class="tab-icon"><i class='bx bx-bookmark-alt font-18 me-1'></i>
+                        </div>
+                        <div  class="tab-title">Danh mục</div>
+                      </div>
+                    </a>
+                  </li>
+
+                </ul>
+
+
+                <!----------------------------------------------------------------Category Parent nè ------------------------------------------------------------------------------->
+
+                <div class="tab-content pt-3">
+                  <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
+                    <br><br>
+                    <form class="row g-3" [formGroup]="parent">
+                      <div class="col-md-12">
+                        <div class="col-md-6">
+                          <label for="inputName" class="form-label">Tên loại</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="bx bxs-cart"></i></span>
+                            <input formControlName="name" type="text" class="form-control border-start-0"
+                              placeholder="Tên loại" />
+                          </div>
+                          <div *ngIf="
+                          parent.controls['name'].invalid &&
+                          (parent.controls['name'].dirty ||
+                          parent.controls['name'].touched || checkFormParent )
+                        " class="alert alert-danger">
+                          <span *ngIf="
+                          parent.controls['name'].errors &&
+                          parent.controls['name'].errors.required
+                          ">Không được bỏ trống.</span>
+                      </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <label for="inputUsername" class="form-label">Hoạt động</label>
+                            <div class="input-group">
+                              <div class="form-check form-check-inline">
+                                <input formControlName="enable" class="form-check-input" type="radio" name="isenable"
+                                  id="inlineRadio1" value="true">
+                                <label class="form-check-label" for="inlineRadio1">Kích hoạt</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input formControlName="enable" class="form-check-input" type="radio" name="isenable"
+                                  id="inlineRadio2" value="false">
+                                <label class="form-check-label" for="inlineRadio2">Không Kích hoạt</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <button [disabled]="editingParent?'disabled':''" type="submit" class="btn btn-success px-5" (click)="createParentCategory()">
+                          Thêm
+                        </button>
+                        <button  (click)="updateParentCategory()" [disabled]="!editingParent?'disabled':''"   type="submit" class="btn btn-primary px-5" style="margin-left: 10px">
+                          Sửa
+                        </button>
+                        <button  (click)="deleteParentCategory()" [disabled]="!editingParent?'disabled':''"  type="submit" class="btn btn-danger px-5" style="margin-left: 10px">
+                          Xóa
+                        </button>
+                        <button (click)="resetFormParentCategory()" type="submit" class="btn btn-secondary px-5" style="margin-left: 10px">
+                          Làm mới
+                        </button>
+                      </div>
+                    </form><br>
+                    <br><br>
+                    <div class="row">
+                      <div class="col-md-6">DATATABLE EXAMPLE</div>
+                      <div class="col-md-6">
+                        <div class="position-relative">
+                          <input [(ngModel)]="term" type="text" class="form-control ps-5 radius-30" placeholder="Search" #myInput>
+                          <span class="position-absolute top-50 product-show translate-middle-y"><i
+                              class="bx bx-search"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-lg-flex align-items-center mb-4 gap-3">
+                          <div class="position-relative">
+                          </div>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table mb-0">
+                            <thead class="table-light">
+                              <tr>
+                                <th>Tên danh mục</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of listParentCategory | paginate: { itemsPerPage: 5, currentPage: p,id :'parent' } |filter:term ">
+                                <td>{{item.name}}</td>
+                                <td>
+                                  <div *ngIf="item.enable"
+                                    class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i
+                                      class='bx bxs-circle me-1'></i>Hoạt động</div>
+                                  <div *ngIf="!item.enable"
+                                    class="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i
+                                      class='bx bxs-circle me-1'></i>Không hoạt động</div>
+                                </td>
+                                <td></td>
+                                <td>
+                                  <i (click)="editParentCategory(item)" class="bx bx-edit-alt btn-success btn" style="margin-right: 10px;"></i>
+                                  <i (click)="deleteParentCategoryrow(item.id)" class="bx bx-delete-alt btn-danger btn"><svg xmlns="http://www.w3.org/2000/svg"
+                                      width="16" height="16" fill="currentColor" class="bi bi-trash-fill"
+                                      viewBox="0 0 16 16">
+                                      <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg></i>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <pagination-controls (pageChange)="p = $event" id="parent"></pagination-controls>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!---------------------------------------------------------------- Kết thúc Category Parent ------------------------------------------------------------------------------->
+
+
+
+                  <!----------------------------------------------------------------Category Parent Child nè ------------------------------------------------------------------------------->
+
+                  <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
+                    <br><br>
+                    <form [formGroup]="category" class="row g-3">
+
+                      <div class="col-md-12">
+                        <div class="col-md-6">
+                          <label for="inputUsername" class="form-label">Tên loại</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-transparent"><i class="bx bxs-cart"></i></span>
+                            <input formControlName="name" type="text" class="form-control border-start-0"
+                              id="inputUsername" placeholder="Tên loại" />
+                          </div>
+                          <div *ngIf="
+                          category.controls['name'].invalid &&
+                          (category.controls['name'].dirty ||
+                          category.controls['name'].touched || checkFormCategory )
+                        " class="alert alert-danger">
+                          <span *ngIf="
+                          category.controls['name'].errors &&
+                          category.controls['name'].errors.required
+                          ">Không được bỏ trống.</span>
+                      </div>
+                        </div>
+                        <br>
+                        <div class="col-6">
+                          <div>
+                            <label class="form-label">Danh mục cha</label>
+                            <select class="form-select" formControlName="parents">
+                              <option [ngValue]="null" disabled>
+                              </option>
+                              <option *ngFor="let prf of listParentEnableTrue" [ngValue]="prf.id">
+                                {{ prf ? prf.name : 'Không có' }}
+                              </option>
+                            </select>
+                          </div>
+                          <div
+                            *ngIf=" (category.controls['parents'].invalid && category.controls['parents'].touched) || (category.controls['parents'].invalid && checkFormCategory)"
+                            class="alert alert-danger">
+                            <span
+                              *ngIf="category.controls['parents'].errors && category.controls['parents'].errors.required">
+                              Danh mục cha là bắt buộc</span>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <label for="inputUsername" class="form-label">Hoạt động</label>
+                            <div class="input-group">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="enable" name="isenable"
+                                  id="inlineRadio1" value="true">
+                                <label class="form-check-label" for="inlineRadio1">Kích hoạt</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" formControlName="enable" name="isenable"
+                                  id="inlineRadio2" value="false">
+                                <label class="form-check-label" for="inlineRadio2">Không Kích hoạt</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <button  [disabled]="editingCategory?'disabled':''" (click)="createCategory()" type="submit" class="btn btn-success px-5">
+                          Thêm
+                        </button>
+                        <button (click)="updateCategory()" [disabled]="!editingCategory?'disabled':''" type="submit" class="btn btn-primary px-5" style="margin-left: 10px">
+                          Sửa
+                        </button>
+                        <button (click)="deleteCategory()" [disabled]="!editingCategory?'disabled':''" type="submit" class="btn btn-danger px-5" style="margin-left: 10px">
+                          Xóa
+                        </button>
+                        <button (click)="resetFormCategory()" type="submit" class="btn btn-secondary px-5" style="margin-left: 10px">
+                          Làm mới
+                        </button>
+                      </div>
+                    </form>
+                    <br><br><br>
+                    <div class="row">
+                      <div class="col-md-6">DATATABLE EXAMPLE</div>
+                      <div class="col-md-6">
+                        <div class="position-relative">
+                          <input  [(ngModel)]="term2" type="text" class="form-control ps-5 radius-30" placeholder="Search Order" #myInputPC>
+                          <span class="position-absolute top-50 product-show translate-middle-y"><i
+                              class="bx bx-search"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-lg-flex align-items-center mb-4 gap-3">
+                          <div class="position-relative">
+                          </div>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table mb-0">
+                            <thead class="table-light">
+                              <tr>
+                                <th>Name</th>
+                                <th>Name Parent</th>
+                                <th>Is enable</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of listCategory | paginate: { itemsPerPage: 5, currentPage: p,id:'category' } |filter:term2">
+                                <td>{{item.name}}</td>
+                                <td>{{item.parent.name}}</td>
+                                <td>
+                                  <div *ngIf="item.enable"
+                                  class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i
+                                    class='bx bxs-circle me-1'></i>Hoạt động</div>
+                                <div *ngIf="!item.enable"
+                                  class="badge rounded-pill text-danger bg-light-danger p-2 text-uppercase px-3"><i
+                                    class='bx bxs-circle me-1'></i>Không hoạt động</div>
+                                </td>
+                                <td>
+                                  <i (click)="editCategory(item)" class="bx bx-edit-alt btn-success btn" style="margin-right: 10px;"></i>
+                                  <i (click)="deleteCategoryrow(item.id)" class="bx bx-delete-alt btn-danger btn"><svg xmlns="http://www.w3.org/2000/svg"
+                                      width="16" height="16" fill="currentColor" class="bi bi-trash-fill"
+                                      viewBox="0 0 16 16">
+                                      <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg></i>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <pagination-controls (pageChange)="p = $event" id="category"></pagination-controls>
+                        </div>
+                      </div>
+                      <div style="text-align: center;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

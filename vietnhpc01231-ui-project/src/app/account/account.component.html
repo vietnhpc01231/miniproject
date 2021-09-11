@@ -1,0 +1,295 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
+    <div class="page-wrapper">
+        <div class="page-content">
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">Forms</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item">
+                                <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Tài khoản</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Settings</button>
+                        <button type="button" class="
+                    btn btn-primary
+                    split-bg-primary
+                    dropdown-toggle dropdown-toggle-split
+                  " data-bs-toggle="dropdown">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
+                            <a class="dropdown-item" href="javascript:;">Action</a>
+                            <a class="dropdown-item" href="javascript:;">Another action</a>
+                            <a class="dropdown-item" href="javascript:;">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:;">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-2">
+                <div class="col-md-12">
+                    <h6 class="mb-0 text-uppercase">Form with icons</h6>
+                    <hr />
+                    <div class="card border-top border-0 border-4 border-danger">
+                        <div class="card-body p-5">
+                            <div class="card-title d-flex align-items-center">
+                                <div><i class="bx bxs-user me-1 font-22 text-danger"></i></div>
+                                <h5 class="mb-0 text-danger">Quản lý tài khoản</h5>
+                            </div>
+                            <hr />
+                            <div class="card-body" style="margin-top: -5%;">
+                                <!----------------------------------------------------------------start------------------------------------------------------------------------------->
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
+                                        <br><br>
+                                        <form class="row g-3" [formGroup]="form">
+
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <label for="inputName" class="form-label">Tên</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-transparent"><i
+                                                                class="bx bxs-user"></i></span>
+                                                        <input formControlName="fullname" type="text"
+                                                            class="form-control border-start-0" placeholder="Họ tên" />
+                                                    </div>
+                                                    <div *ngIf="
+                                                    form.controls['fullname'].invalid &&
+                                                    (form.controls['fullname'].dirty ||
+                                                    form.controls['fullname'].touched || checkall)
+                                                  " class="alert alert-danger">
+                                                        <span *ngIf="
+                                                    form.controls['fullname'].errors &&
+                                                    form.controls['fullname'].errors.required
+                                                    ">Không được bỏ trống.</span>
+                                                    </div>
+                                                    <label for="inputName" class="form-label">Tài khoản </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-transparent"><i
+                                                                class="bx bxs-user"></i></span>
+                                                        <input  [attr.disabled]="editing ? '' : null"  formControlName="username" type="text"
+                                                            class="form-control border-start-0"
+                                                            placeholder="tài khoản" />
+                                                    </div>
+                                                    <div *ngIf="
+                                                    form.controls['username'].invalid &&
+                                                    (form.controls['username'].dirty ||
+                                                    form.controls['username'].touched || checkall)
+                                                  " class="alert alert-danger">
+                                                        <span *ngIf="
+                                                    form.controls['username'].errors &&
+                                                    form.controls['username'].errors.required
+                                                    ">Không được bỏ trống.</span>
+                                                    </div>
+                                                    <label for="inputName" class="form-label">Mật khẩu </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text bg-transparent"><i
+                                                                class="bx bxs-lock-open"></i></span>
+                                                        <input formControlName="password" type="password"
+                                                            class="form-control border-start-0"
+                                                            placeholder="Mật khẩu" />
+                                                    </div>
+                                                    <div *ngIf="
+                                                    form.controls['password'].invalid &&
+                                                    (form.controls['password'].dirty ||
+                                                    form.controls['password'].touched || checkall)
+                                                  " class="alert alert-danger">
+                                                        <span *ngIf="
+                                                    form.controls['password'].errors &&
+                                                    form.controls['password'].errors.required
+                                                    ">Không được bỏ trống.</span>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+
+                                                        <label class="form-label">Giới tính</label>
+                                                        <div class="input-group">
+                                                            <div class="form-check form-check-inline">
+                                                                <input formControlName="gender" class="form-check-input"
+                                                                    type="radio" name="isenable" id="inlineRadio1"
+                                                                    value="true">
+                                                                <label class="form-check-label"
+                                                                    for="inlineRadio1">Nam</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input formControlName="gender" class="form-check-input"
+                                                                    type="radio" name="isenable" id="inlineRadio2"
+                                                                    value="false">
+                                                                <label class="form-check-label"
+                                                                    for="inlineRadio2">Nữ</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="inputName" class="form-label"> </label>
+                                                <div class="input-group">
+                                                    <div><br><br></div>
+                                                </div>
+                                                <label for="inputName" class="form-label">Email </label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-transparent"><i
+                                                            class="bx bxs-message"></i></span>
+                                                    <input formControlName="email" type="text"
+                                                        class="form-control border-start-0" placeholder="Email" />
+                                                </div>
+                                                <div *ngIf="
+                                                    form.controls['email'].invalid &&
+                                                    (form.controls['email'].dirty ||
+                                                    form.controls['email'].touched || checkall)
+                                                  " class="alert alert-danger">
+                                                    <span *ngIf="
+                                                    form.controls['email'].errors &&
+                                                    form.controls['email'].errors.required
+                                                    ">Không được bỏ trống.</span>
+                                                    <span *ngIf="
+                                                    form.controls['email'].errors &&
+                                                    form.controls['email'].errors.email
+                                                      ">Email không đúng định dạng.</span>
+                                                </div>
+                                                <label for="inputName" class="form-label">Điện thoại </label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text bg-transparent"><i
+                                                            class="bx bxs-microphone"></i></span>
+                                                    <input formControlName="phone" type="text"
+                                                        class="form-control border-start-0"
+                                                        placeholder="0123..." />
+                                                </div>
+                                                <div *ngIf="
+                                                    form.controls['phone'].invalid &&
+                                                    (form.controls['phone'].dirty ||
+                                                    form.controls['phone'].touched || checkall)
+                                                  " class="alert alert-danger">
+                                                    <span *ngIf="
+                                                    form.controls['phone'].errors &&
+                                                    form.controls['phone'].errors.required
+                                                    ">Không được bỏ trống.</span>
+                                                    <span *ngIf="
+                                                    form.controls['phone'].errors &&
+                                                    form.controls['phone'].errors.pattern
+                                                  ">Số điện thoại không đúng định dạng.(bắt đầu 0 và có 11 số)</span>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+
+                                                    <label class="form-label">Roles</label>
+                                                    <div class="input-group">
+                                                        <div class="form-check form-check-inline">
+                                                            <input formControlName="role" class="form-check-input"
+                                                                type="radio" id="inlineRadio4" value="user">
+                                                            <label class="form-check-label"
+                                                                for="inlineRadio4">USER</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input formControlName="role" class="form-check-input"
+                                                                type="radio" id="inlineRadio5" value="admin">
+                                                            <label class="form-check-label"
+                                                                for="inlineRadio5">ADMIN</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input formControlName="role" class="form-check-input"
+                                                                type="radio" id="inlineRadio6" value="pm">
+                                                            <label class="form-check-label"
+                                                                for="inlineRadio6">PM</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <button [disabled]="editing?'disabled':''" (click)="createUser()" type="submit"
+                                                    class="btn btn-success px-5">
+                                                    Thêm
+                                                </button>
+                                                <button (click)="updateUser()" [disabled]="!editing?'disabled':''"  type="submit" class="btn btn-primary px-5"
+                                                    style="margin-left: 10px">
+                                                    Sửa
+                                                </button>
+                                                <button (click)="deleteUserEdit()" [disabled]="!editing?'disabled':''" type="submit" class="btn btn-danger px-5"
+                                                    style="margin-left: 10px">
+                                                    Xóa
+                                                </button>
+                                                <button (click)="resetForm()" type="submit" class="btn btn-secondary px-5"
+                                                    style="margin-left: 10px">
+                                                    Làm mới
+                                                </button>
+                                            </div>
+                                        </form><br>
+                                        <br><br>
+                                        <div class="row">
+                                            <div class="col-md-6">DATATABLE EXAMPLE</div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative">
+                                                    <input type="text" [(ngModel)]="term" class="form-control ps-5 radius-30"
+                                                        placeholder="Search" #myInput> <span
+                                                        class="position-absolute top-50 product-show translate-middle-y"><i
+                                                            class="bx bx-search"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="d-lg-flex align-items-center mb-4 gap-3">
+                                                    <div class="position-relative">
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table mb-0">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>#Tài khoản</th>
+                                                                <th>Họ tên</th>
+                                                                <th>Email</th>
+                                                                <th>Số điện thoại</th>
+                                                                <th>Giới tính</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of listUser| paginate: { itemsPerPage: 5, currentPage: p } |filter:term">
+                                                                <td>{{item.username}}</td>
+                                                                <td>{{item.fullname}}</td>
+                                                                <td>{{item.email}}</td>
+                                                                <td>{{item.phone}}</td>
+                                                                <td>{{item.gender?'Nam':'Nữ'}}</td>
+                                                                <td>
+                                                                    <i (click)="editUser(item.username)" class="bx bx-edit-alt btn-success btn"
+                                                                        style="margin-right: 10px;"></i>
+                                                                    <i (click)="deleteUser(item.username)" class="bx bx-delete-alt btn-danger btn"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="16" height="16" fill="currentColor"
+                                                                            class="bi bi-trash-fill"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                                                        </svg></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---------------------------------------------------------------- Kết thúc Category Parent ------------------------------------------------------------------------------->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
